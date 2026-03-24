@@ -5,11 +5,11 @@ import json
 
 def run_test(generator):
     while True:
-        query = input(f"\nEnter a query (or 'exit' to quit): ")
+        print("\nEnter a query to find relevant companies (or type 'exit' to quit):")
+        query = input(f"\n>> ")
         if query.lower() == 'exit':
             break
         result = generator.get_logic_filters(query)
-        print(f"Generated filter: {json.dumps(result, indent=2)}")
         results = search_companies('companies.jsonl', result)
         ranked_results = rank_companies(query, results)
         print(f"\n{len(results)} companies found. Top 10 results:")
